@@ -1,6 +1,6 @@
 {
   "name": "install-vscode-extensions",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Simple binary that installs a package's recommended VS Code extentions",
   "bin": {
     "install-vscode-extensions": "./ive.js",
