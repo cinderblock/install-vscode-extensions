@@ -1,0 +1,5 @@
+.prettierrc
+.editorconfig
+.vscode
+
+yarn-error.log

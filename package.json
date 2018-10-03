@@ -1,0 +1,19 @@
+{
+  "name": "install-vscode-extensions",
+  "version": "0.0.0",
+  "description": "Simple binary that installs a package's recommended VS Code extentions",
+  "bin": {
+    "install-vscode-extensions": "./ive.js",
+    "ive": "./ive.js"
+  },
+  "scripts": {
+    "postversion": "npm publish",
+    "postpublish": "git push origin master --tags"
+  },
+  "repository": "https://github.com/cinderblock/install-vscode-extensions",
+  "author": "Cameron Tacklind <cameron@tacklind.com>",
+  "license": "MIT",
+  "dependencies": {
+    "which": "^1.3.1"
+  }
+}
