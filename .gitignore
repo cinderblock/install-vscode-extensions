@@ -1,2 +1,7 @@
-node_modules
+node_modules/
+dist/
+coverage/
+*.tgz
+.DS_Store
+npm-debug.log*
 yarn-error.log

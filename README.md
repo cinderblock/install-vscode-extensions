@@ -1,21 +1,16 @@
 # `install-vscode-extensions`
 
-Simple binary that installs vscode extentions
+A small CLI that installs your package's recommended VS Code extensions.
 
 ## Install
 
-```shell
+```sh
 npm install --save-dev install-vscode-extensions
-```
-
-```shell
-yarn add --dev install-vscode-extensions
 ```
 
 ## Usage
 
-The intended use for this is as a setup script when preparing a development environment.
-Add a `postinstall` or `prepare` script that runs `install-vscode-extensions` (or `ive`) and your (VSCode)development environment will be ready to go:
+The intended use is as a setup script when preparing a development environment. Add a `postinstall` or `prepare` script that runs `install-vscode-extensions` (or its short alias `ive`), and VS Code extensions your repo recommends get installed automatically when new developers run `npm install`.
 
 ```json
 {
@@ -24,11 +19,28 @@ Add a `postinstall` or `prepare` script that runs `install-vscode-extensions` (o
     "prepare": "install-vscode-extensions"
   },
   "devDependencies": {
-    "install-vscode-extensions": "^1.0.0"
+    "install-vscode-extensions": "^1.1.0"
   }
 }
 ```
 
-`install-vscode-extensions` will find the `.vscode` folder in the current working directory, load the `extensions.json` file, and run `code --install-package ${package}` for each recommended package.
+The CLI reads `.vscode/extensions.json` from the current working directory, pulls the `recommendations` array out, and runs `code --install-extension <ext>` for each entry.
 
-Now VSCode extensions that your package recommends are installed automatically when new developers run `npm install` or `yarn`.
+`.vscode/extensions.json` may include `//` and `/* */` comments (matching VS Code's own JSON-with-comments parser).
+
+## Exit codes
+
+| Code | Meaning |
+| --- | --- |
+| 0 | Extensions installed (or already installed). |
+| 1 | Couldn't read `.vscode/extensions.json`, no `recommendations` array, or `code` not on PATH. |
+| (other) | Propagated from the `code` child process. |
+
+## Requirements
+
+- Node.js >= 22.
+- The `code` CLI on PATH (`Shell Command: Install 'code' command in PATH` from VS Code's command palette on macOS).
+
+## License
+
+MIT.
